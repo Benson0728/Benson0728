@@ -1,0 +1,32 @@
+server:
+  port: 82
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?useSSL=false
+    username: root
+    password: byk20040728
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      web-context-unify: false
+  application:
+    name: OrderService
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: ""
+      group: DEFAULT_GROUP
+      application: SeataServer
+  tx-service-group: seata_demo
+  service:
+    vgroup-mapping:
+      seata_demo: default
+#feign:
+#  httpclient:
+#    enabled: true
+#    max-connections:
+#    max-connections-per-route:

@@ -1,0 +1,27 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: GateWay
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://UserService
+          predicates:
+            - Path=/users/**
+        - id: order-service
+          uri: lb://OrderService
+          predicates:
+            - Path=/orders/**
+        - id: mail-login
+          uri: lb://MailLogin
+          predicates:
+            - Path=/MailLogin/**
+        - id: base-login
+          uri: lb://BaseLogin
+          predicates:
+            - Path=/UserLogin/**
